@@ -1,0 +1,323 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class QuizAlpha {
+ 
+       Scanner sc = new Scanner(System.in);
+       Player player;
+       ArrayList<Question> categ1;
+       ArrayList<Question> categ2;
+       ArrayList<Question> categ3;
+       
+       Question q1;
+       Question q2;
+       Question q3;
+       Question q4;
+       Question q5;
+       Question q6;
+       Question q7;
+       Question q8;
+       Question q9;
+       
+       
+       // initializing the questions and categories
+       public void init() {
+              
+              // CATEGORY 1
+              q1 = new Question("What is java", 2, 1);
+              Answer aq11 = new Answer("It's an Object Oriented programming language", true);
+              Answer aq12 = new Answer("It's type of service over the cloud", false);
+              Answer aq13 = new Answer("It's a functional programming language", false);
+              
+          q1.answers[0] = aq11;
+          q1.answers[1] = aq12;
+          q1.answers[2] = aq13;
+          categ1 = new ArrayList<>();
+          categ1.add(q1);
+          
+          
+          q4 = new Question("What is inheritence?", 3, 1);
+          Answer aq41 = new Answer("When you inherit money from your deceised relatives", false);
+          Answer aq42 = new Answer("It's a process concerning JDBC", false);
+          Answer aq43 = new Answer("In the Java language, classes can be derived from other classes, thereby inheriting fields and methods from those classes.", true);
+          
+      q4.answers[0] = aq41;
+      q4.answers[1] = aq42;
+      q4.answers[2] = aq43;
+      categ1.add(q4);
+          
+      q7 = new Question("What is the String data type?", 6, 1);
+      Answer aq71 = new Answer("It's a 64 bit primitive", false);
+      Answer aq72 = new Answer("The String class is used to represent character strings, they are also considered objects", true);
+      Answer aq73 = new Answer("It is a string of words", false);
+      
+  q7.answers[0] = aq71;
+  q7.answers[1] = aq72;
+  q7.answers[2] = aq73;
+  categ1.add(q7);
+          
+          // CATEGORY 2
+          
+          q2 = new Question("What is polymorphism", 2, 2);
+              Answer aq21 = new Answer("It's a programming language", false);
+              Answer aq22 = new Answer("Polymorphism is one of the OOPs feature that allows us to perform a single action in different ways. ", true);
+              Answer aq23 = new Answer("It's a waterbaloon", false);
+              
+          q2.answers[0] = aq21;
+          q2.answers[1] = aq22;
+          q2.answers[2] = aq23;
+          categ2 = new ArrayList<>();
+          categ2.add(q2);
+          
+          
+          q5 = new Question("What is multithreading", 5, 2);
+          Answer aq51 = new Answer("It's about multi tasking while you are learning", false);
+          Answer aq52 = new Answer("A multi-threaded program contains two or more parts that can run concurrently. ", true);
+          Answer aq53 = new Answer("It's a way of living ", false);
+          
+      q5.answers[0] = aq51;
+      q5.answers[1] = aq52;
+      q5.answers[2] = aq53;
+      
+      categ2.add(q5); 
+          
+      
+      q8 = new Question("What are arrays?", 6, 2);
+      Answer aq81 = new Answer("Special objects used to pass values outside application", false);
+      Answer aq82 = new Answer("An array is a container object that holds a fixed number of values of a single type. ", true);
+      Answer aq83 = new Answer("Arrays are classes that provide methods for dealing with Unicode", false);
+      
+  q8.answers[0] = aq81;
+  q8.answers[1] = aq82;
+  q8.answers[2] = aq83;
+  
+  categ2.add(q8); 
+          
+  
+  
+          // CATEGORY 3
+          q3 = new Question("What is a static variable", 4, 3);
+              Answer aq31 = new Answer("Provides classes that are fundamental to the design of the Java programming language", false);
+              Answer aq32 = new Answer("The static variable can be used to refer the common property of all objects ", true);
+              Answer aq33 = new Answer("It's a variable that does not change, final", false);
+              
+          q3.answers[0] = aq31;
+          q3.answers[1] = aq32;
+          q3.answers[2] = aq33;
+          categ3 = new ArrayList<>();
+          categ3.add(q3);
+          
+          
+          q6 = new Question("What is the value in bits for Long primitive data types", 5, 3);
+          Answer aq61 = new Answer("16 bits", false);
+          Answer aq62 = new Answer("32 bits ", false);
+          Answer aq63 = new Answer("64 bits", true);
+          
+      q6.answers[0] = aq61;
+      q6.answers[1] = aq62;
+      q6.answers[2] = aq63;
+    
+      categ3.add(q6);
+      
+      q9 = new Question("What is a method in Java?", 2, 3);
+      Answer aq91 = new Answer("A Java method is a collection of statements that are grouped together to perform an operation", true);
+      Answer aq92 = new Answer("It is a class that is declared abstract. ", false);
+      Answer aq93 = new Answer("A way to share code with coleagues", false);
+      
+  q9.answers[0] = aq91;
+  q9.answers[1] = aq92;
+  q9.answers[2] = aq93;
+
+  categ3.add(q9);
+          
+          
+       }
+       
+ 
+       public void play() {
+              welcomePlayer();
+              
+              int a = chooseCategory();
+              
+              int finalScore = showQuestions(a);
+             System.out.println("The final score is " + finalScore);
+              
+       }
+       
+       
+       
+       public void welcomePlayer() {
+              System.out.println("Welcome, please enter your name to create a new player: ");
+              String playerName = sc.next();
+              player = new Player(playerName);
+              System.out.println("Welcome " + player.getName());
+              System.out.println();
+       }
+       
+       
+       public int chooseCategory() {
+              int categ = 0;
+              
+              System.out.println("Please choose the category of questions based on difficulty from 1-3: ");
+              System.out.println("1. Categ 1");
+              System.out.println("2. Categ 2");
+              System.out.println("3. Categ 3");
+              
+              try {
+              categ = sc.nextInt();
+              }catch(Exception e) {
+                     System.out.println("Only pick from 1-3, other characters not allowed");
+              }
+              
+              return categ;
+       }
+       
+
+       public int showQuestions(int category) {
+              
+    	   int score = player.score;
+           score = 0;
+              switch(category) {
+                
+              case 1:
+                     System.out.println("First question: ");
+                     Question q = new Question();
+                     q = categ1.get(0);
+                     q.showQuestionAnswer();
+                     boolean answer1 = getAnswerForQuestion(q);
+                    if(answer1 == true) {
+                    	score += q.points;
+                    }
+                     System.out.println("Your score so far is: " + score);
+                     
+                   
+                     System.out.println("Second question: ");
+                     Question q1 = new Question();
+                     q1 = categ1.get(1);
+                     q1.showQuestionAnswer();
+                     
+                     boolean answer2 = getAnswerForQuestion(q1);
+                     if(answer2 == true) {
+                     	score += q1.points;
+                     }
+                      System.out.println("Your score so far is: " + score);
+                     
+                     
+                     System.out.println("Third question: ");
+                     Question q2 = new Question();
+                     q2 = categ1.get(2);
+                     q2.showQuestionAnswer();
+                     
+                     boolean answer3 = getAnswerForQuestion(q2);
+                     if(answer3 == true) {
+                     	score += q2.points;
+                     }
+                      System.out.println("Your score so far is: " + score);
+                     
+                     
+                     break;
+                     
+              case 2:
+            	  System.out.println("First question: ");
+                  Question q3 = new Question();
+                  q3 = categ2.get(0);
+                  q3.showQuestionAnswer();
+                  boolean answer4 = getAnswerForQuestion(q3);
+                  if(answer4 == true) {
+                  	score += q3.points;
+                  }
+                   System.out.println("Your score so far is: " + score);
+                
+                  System.out.println("Second question: ");
+                  Question q4 = new Question();
+                  q4 = categ2.get(1);
+                  q4.showQuestionAnswer();
+                  boolean answer5 = getAnswerForQuestion(q4);
+                  if(answer5 == true) {
+                  	score += q4.points;
+                  }
+                   System.out.println("Your score so far is: " + score);
+                
+                  
+                  System.out.println("Third question: ");
+                  Question q5 = new Question();
+                  q5 = categ2.get(2);
+                  q5.showQuestionAnswer();
+                  boolean answer6 = getAnswerForQuestion(q5);
+                  if(answer6 == true) {
+                  	score += q5.points;
+                  }
+                   System.out.println("Your score so far is: " + score);
+                  break; 
+            	  
+              case 3:
+            	  
+            	  System.out.println("First question: ");
+                  Question q6 = new Question();
+                  q6 = categ3.get(0);
+                  q6.showQuestionAnswer();
+                  boolean answer7 = getAnswerForQuestion(q6);
+                  if(answer7 == true) {
+                  	score += q6.points;
+                  }
+                   System.out.println("Your score so far is: " + score);
+                
+                  System.out.println("Second question: ");
+                  Question q7 = new Question();
+                  q7 = categ3.get(1);
+                  q7.showQuestionAnswer();
+                  boolean answer8 = getAnswerForQuestion(q7);
+                  if(answer8 == true) {
+                  	score += q7.points;
+                  }
+                   System.out.println("Your score so far is: " + score);
+                
+                  
+                  System.out.println("Third question: ");
+                  Question q8 = new Question();
+                  q8 = categ3.get(2);
+                  q8.showQuestionAnswer();
+                  boolean answer9 = getAnswerForQuestion(q8);
+                  if(answer9 == true) {
+                  	score += q8.points;
+                  }
+                   System.out.println("Your score so far is: " + score);
+                
+                  break;
+                     
+                     
+                     
+                default:
+                	System.out.println("No such option exists, please enter between 1-3");
+                     
+              }
+              return score;
+       }
+       
+       
+       public boolean getAnswerForQuestion(Question question){
+    	   
+       int choice = sc.nextInt();
+       switch(choice) {
+         
+       case 1:
+    	   return question.answers[0].isCorrect();
+    	   
+    	   
+       case 2:
+    	   return question.answers[1].isCorrect();
+    	   
+       case 3:
+    	   return question.answers[2].isCorrect();
+    	   
+    	   
+    	   
+       }
+       
+       return false;
+       
+       }
+      
+       
+       
+}
